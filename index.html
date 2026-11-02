@@ -1,0 +1,317 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mohammed Nawfal | Portfolio</title>
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #0b1120;
+            color: white;
+            line-height: 1.6;
+        }
+
+        header {
+            background: #111c32;
+            padding: 20px 8%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .logo {
+            font-size: 25px;
+            font-weight: bold;
+            color: #38bdf8;
+        }
+
+        nav a {
+            color: white;
+            text-decoration: none;
+            margin-left: 18px;
+            font-size: 14px;
+        }
+
+        nav a:hover {
+            color: #38bdf8;
+        }
+
+        section {
+            padding: 80px 10%;
+        }
+
+        .hero {
+            min-height: 85vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .hero h1 {
+            font-size: 55px;
+            margin: 15px 0;
+        }
+
+        .hero h1 span {
+            color: #38bdf8;
+        }
+
+        .hero h2 {
+            color: #94a3b8;
+            font-size: 25px;
+        }
+
+        .hero p {
+            max-width: 650px;
+            color: #cbd5e1;
+            font-size: 17px;
+        }
+
+        .btn {
+            display: inline-block;
+            width: fit-content;
+            margin-top: 25px;
+            padding: 12px 25px;
+            background: #38bdf8;
+            color: #08111f;
+            text-decoration: none;
+            border-radius: 6px;
+            font-weight: bold;
+        }
+
+        .section-title {
+            font-size: 32px;
+            color: #38bdf8;
+            margin-bottom: 30px;
+        }
+
+        .card {
+            background: #14213a;
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #263852;
+            transition: 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: #38bdf8;
+        }
+
+        .card h3 {
+            color: #38bdf8;
+            margin-bottom: 10px;
+        }
+
+        .card p {
+            color: #cbd5e1;
+        }
+
+        .skills {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .skill {
+            background: #14213a;
+            border: 1px solid #38bdf8;
+            padding: 12px 22px;
+            border-radius: 25px;
+        }
+
+        .contact a {
+            color: #38bdf8;
+            text-decoration: none;
+        }
+
+        footer {
+            text-align: center;
+            padding: 25px;
+            background: #111c32;
+            color: #94a3b8;
+        }
+
+        @media(max-width: 700px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            nav a {
+                margin: 0;
+            }
+
+            section {
+                padding: 60px 7%;
+            }
+
+            .hero h1 {
+                font-size: 38px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="logo">Nawfal.</div>
+
+    <nav>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#education">Education</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#contact">Contact</a>
+    </nav>
+</header>
+
+<!-- HOME SECTION -->
+<section class="hero" id="home">
+    <h2>Hello, Welcome to My Portfolio!</h2>
+
+    <h1>I'm <span>Mohammed Nawfal</span></h1>
+
+    <h2>Computer Science Engineering Student</h2>
+
+    <p>
+        I am an aspiring software developer passionate about
+        technology, programming, innovation and problem solving.
+        I am always excited to learn new skills and build creative
+        projects.
+    </p>
+
+    <a href="#about" class="btn">Explore My Portfolio</a>
+</section>
+
+<!-- ABOUT SECTION -->
+<section id="about">
+    <h2 class="section-title">About Me</h2>
+
+    <div class="card">
+        <h3>Who Am I?</h3>
+
+        <p>
+            Hello! I am Mohammed Nawfal, a Computer Science
+            Engineering student at ATRIA Institute of Technology.
+            I am interested in software development, web
+            technologies, artificial intelligence and emerging
+            technologies.
+
+            My goal is to become a skilled software engineer
+            and contribute to innovative technology solutions.
+        </p>
+    </div>
+</section>
+
+<!-- EDUCATION SECTION -->
+<section id="education">
+    <h2 class="section-title">Education</h2>
+
+    <div class="card">
+        <h3>ATRIA Institute of Technology</h3>
+
+        <p><strong>Degree:</strong> Bachelor of Engineering</p>
+
+        <p><strong>Branch:</strong> Computer Science Engineering (CSE)</p>
+
+        <p><strong>Course Started:</strong> 2026</p>
+
+        <p><strong>Expected Completion:</strong> 2030</p>
+    </div>
+</section>
+
+<!-- SKILLS SECTION -->
+<section id="skills">
+    <h2 class="section-title">My Skills</h2>
+
+    <div class="skills">
+        <div class="skill">HTML</div>
+        <div class="skill">CSS</div>
+        <div class="skill">Python</div>
+        <div class="skill">C Programming</div>
+        <div class="skill">Problem Solving</div>
+        <div class="skill">Communication</div>
+        <div class="skill">Teamwork</div>
+        <div class="skill">Learning New Technologies</div>
+    </div>
+</section>
+
+<!-- PROJECTS SECTION -->
+<section id="projects">
+    <h2 class="section-title">My Projects</h2>
+
+    <div class="card">
+        <h3>Personal Portfolio Website</h3>
+
+        <p>
+            A personal portfolio website created using HTML
+            and CSS to showcase my profile, education, skills
+            and projects.
+        </p>
+    </div>
+
+    <div class="card">
+        <h3>Upcoming Projects</h3>
+
+        <p>
+            I am currently learning programming and exploring
+            new technologies. More exciting projects will be
+            added here soon.
+        </p>
+    </div>
+</section>
+
+<!-- CONTACT SECTION -->
+<section id="contact">
+    <h2 class="section-title">Contact Me</h2>
+
+    <div class="card contact">
+        <h3>Let's Connect!</h3>
+
+        <p>
+            I am always interested in learning, collaborating
+            and connecting with people in technology.
+        </p>
+
+        <p>Email: Add your email address here</p>
+
+        <p>GitHub:
+            <a href="https://github.com/NAWFAL786"
+               target="_blank">
+               Visit My GitHub
+            </a>
+        </p>
+    </div>
+</section>
+
+<footer>
+    <p>© 2026 Mohammed Nawfal. All Rights Reserved.</p>
+    <p>Designed with passion and creativity.</p>
+</footer>
+
+</body>
+</html>
