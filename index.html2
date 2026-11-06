@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Z Mohammed Nawfal | Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600;800&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#150f26; --panel:#1e1636; --line:#3a2c62;
+  --text:#f1ecff; --muted:#a79bcf; --orange:#ff3b4e; --rgb:255,59,78; --soft:#ff8a94; --lilac:#b9a6ff; --mint:#5ef2c8;
+  --sans:'Outfit',system-ui,sans-serif; --mono:'Fira Code',ui-monospace,monospace;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.65;min-height:100vh;overflow-x:hidden}
+button{font:inherit;color:inherit;cursor:pointer;background:none;border:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--orange);outline-offset:3px;border-radius:6px}
+#bg{position:fixed;inset:0;z-index:0;pointer-events:none}
+#glow{position:fixed;width:420px;height:420px;border-radius:50%;pointer-events:none;z-index:0;left:0;top:0;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(var(--rgb),.16),transparent 65%);opacity:0;transition:opacity .4s}
+.wrap{position:relative;z-index:1}
+
+/* top bar */
+header{position:sticky;top:0;z-index:20;background:rgba(21,15,38,.85);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+.bar{max-width:1080px;margin:auto;padding:12px 24px;display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:12px;font-weight:800;font-size:1.1rem}
+.logo b{width:38px;height:38px;border-radius:11px;background:var(--orange);color:#1a0d05;display:grid;place-items:center;font-size:1rem}
+.tabs{display:flex;gap:6px}
+.tab{padding:9px 20px;border-radius:999px;font-weight:600;color:var(--muted);border:1px solid transparent;transition:.2s}
+.tab:hover{color:var(--text);border-color:var(--line)}
+.tab.on{background:var(--orange);color:#1a0d05}
+
+.sw{display:flex;gap:8px;align-items:center}
+.sw button{width:20px;height:20px;border-radius:50%;border:2px solid var(--line);transition:.2s}
+.sw button:hover,.sw button.on{border-color:var(--text);transform:scale(1.15)}
+main{max-width:1080px;margin:auto;padding:56px 24px 80px}
+.page{display:none}
+.page.show{display:block;animation:in .45s ease}
+@keyframes in{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:none}}
+
+h1{font-size:clamp(3rem,10vw,7rem);font-weight:800;line-height:.95;letter-spacing:-.04em}
+h1 .alt{display:block;color:var(--lilac)}
+#word{display:inline-block;color:var(--orange);min-width:1ch;border-bottom:4px solid var(--orange)}
+h2.t{font-size:clamp(2rem,5vw,3.2rem);font-weight:800;letter-spacing:-.02em;margin-bottom:14px}
+h3{font-size:1.2rem;font-weight:600;margin-bottom:6px}
+p{color:var(--muted);max-width:60ch}
+.lead{font-size:1.2rem;color:var(--text);margin:26px 0 32px;max-width:56ch}
+.btns{display:flex;flex-wrap:wrap;gap:12px}
+.btn{display:inline-block;text-decoration:none;font-weight:600;padding:13px 24px;border-radius:12px;border:1px solid var(--line);transition:.15s}
+.btn:hover{border-color:var(--orange);transform:translateY(-2px)}
+.btn.main{background:var(--orange);border-color:var(--orange);color:#1a0d05}
+
+/* home split */
+.hero{display:grid;grid-template-columns:1.15fr 1fr;gap:44px;align-items:center}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;margin-top:44px}
+.stat{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px}
+.stat b{display:block;font-size:1.7rem;font-weight:800;color:var(--mint)}
+.stat span{color:var(--muted);font-size:.9rem}
+
+/* terminal */
+.term{background:#0f0a1d;border:1px solid var(--line);border-radius:16px;overflow:hidden;box-shadow:0 20px 50px rgba(0,0,0,.45)}
+.term .top{display:flex;gap:7px;align-items:center;padding:12px 16px;border-bottom:1px solid var(--line);font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.term .top i{width:11px;height:11px;border-radius:50%;background:var(--line)}
+.term .top span{margin-left:8px}
+.out{font-family:var(--mono);font-size:.88rem;line-height:1.8;padding:16px 18px 4px;height:250px;overflow-y:auto;white-space:pre-wrap}
+.out .cmd{color:var(--orange)} .out .ok{color:var(--lilac)}
+.chips{display:flex;flex-wrap:wrap;gap:8px;padding:0 18px 14px}
+.chips button{font-family:var(--mono);font-size:.78rem;background:var(--panel);color:var(--lilac);border:1px solid var(--line);border-radius:8px;padding:5px 11px}
+.chips button:hover{border-color:var(--orange);color:var(--text)}
+.row{display:flex;gap:10px;padding:8px 18px 16px;font-family:var(--mono);font-size:.88rem}
+.row label{color:var(--orange)}
+.row input{flex:1;min-width:0;background:none;border:0;outline:0;color:var(--text);font:inherit}
+
+/* about: journey + flip cards */
+.journey{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:0;margin:34px 0 56px;position:relative}
+.journey::before{content:"";position:absolute;left:0;right:0;top:14px;height:2px;background:linear-gradient(90deg,var(--orange),var(--lilac),var(--line))}
+.step{position:relative;padding-top:42px;padding-right:18px}
+.step::before{content:"";position:absolute;top:6px;left:0;width:18px;height:18px;border-radius:50%;background:var(--bg);border:3px solid var(--orange)}
+.step.next::before{border-color:var(--mint);animation:ping 2s infinite}
+@keyframes ping{50%{box-shadow:0 0 0 8px rgba(94,242,200,.15)}}
+.step small{font-family:var(--mono);color:var(--orange);font-size:.82rem}
+.step.next small{color:var(--mint)}
+.cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:20px;margin-top:20px}
+.flip{perspective:900px;height:210px}
+.flip .in{position:relative;width:100%;height:100%;transition:transform .6s;transform-style:preserve-3d}
+.flip.f .in{transform:rotateY(180deg)}
+.face{position:absolute;inset:0;backface-visibility:hidden;border-radius:18px;padding:26px;border:1px solid var(--line);display:flex;flex-direction:column;justify-content:space-between;text-align:left;background:var(--panel)}
+.face.back{transform:rotateY(180deg);background:linear-gradient(145deg,#2a1d4d,#1e1636);border-color:var(--orange)}
+.face h3{font-size:1.9rem;font-weight:800}
+.face .hint{font-family:var(--mono);font-size:.78rem;color:var(--muted)}
+.meter{height:8px;border-radius:8px;background:#120c22;border:1px solid var(--line);overflow:hidden}
+.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--orange),var(--soft))}
+.edu{margin-top:44px;display:flex;gap:18px;align-items:center;background:var(--panel);border:1px solid var(--line);border-left:5px solid var(--mint);border-radius:14px;padding:22px 26px}
+.edu .yr{font-family:var(--mono);color:var(--mint);font-size:.9rem;white-space:nowrap}
+
+/* contact */
+.cgrid{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px}
+.cl{display:grid;gap:12px}
+.cl a{display:flex;justify-content:space-between;gap:12px;align-items:center;text-decoration:none;background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:18px 22px;transition:.2s}
+.cl a:hover{border-color:var(--orange);transform:translateX(5px)}
+.cl small{display:block;color:var(--muted);font-family:var(--mono);font-size:.76rem}
+.cl b{font-weight:600;overflow-wrap:anywhere}
+.cl .go{color:var(--orange);font-weight:800}
+.form{background:var(--panel);border:1px solid var(--line);border-radius:18px;padding:26px;display:grid;gap:14px;align-content:start}
+.form label{font-family:var(--mono);font-size:.78rem;color:var(--muted);display:block;margin-bottom:6px}
+.form input,.form textarea{width:100%;background:#120c22;border:1px solid var(--line);border-radius:10px;padding:12px 14px;color:var(--text);font:inherit}
+.form textarea{min-height:120px;resize:vertical}
+.form input:focus,.form textarea:focus{outline:0;border-color:var(--orange)}
+.form .btn{border:0;font-size:1rem}
+footer{text-align:center;color:var(--muted);font-size:.85rem;padding:0 24px 28px;position:relative;z-index:1}
+
+@media(max-width:860px){
+  .hero,.cgrid{grid-template-columns:1fr}
+  .stats{grid-template-columns:1fr 1fr 1fr}
+  .edu{flex-direction:column;align-items:flex-start;gap:8px}
+}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<canvas id="bg" aria-hidden="true"></canvas>
+<div id="glow"></div>
+
+<div class="wrap">
+<header>
+  <div class="bar">
+    <div class="logo"><b>ZN</b>Z Mohammed Nawfal</div>
+    <nav class="tabs" aria-label="Main">
+      <button class="tab" data-go="home">Home</button>
+      <button class="tab" data-go="about">About</button>
+      <button class="tab" data-go="contact">Contact</button>
+    </nav>
+    <div class="sw" role="group" aria-label="Accent colour">
+      <button style="background:#ff3b4e" data-c="255,59,78|#ff3b4e|#ff8a94" class="on" aria-label="Red"></button>
+      <button style="background:#3ea6ff" data-c="62,166,255|#3ea6ff|#9ccfff" aria-label="Blue"></button>
+      <button style="background:#ffc83d" data-c="255,200,61|#ffc83d|#ffe08a" aria-label="Gold"></button>
+      <button style="background:#8ae04a" data-c="138,224,74|#8ae04a|#c4f08f" aria-label="Lime"></button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+<!-- HOME -->
+<section class="page" id="home">
+  <div class="hero">
+    <div>
+      <h1>Nawfal<span class="alt"><span id="word">builds</span></span></h1>
+      <p class="lead">Computer Science student at Atria Institute of Technology, building with Python and C and shipping ideas fast with vibe coding.</p>
+      <div class="btns">
+        <a class="btn main" href="https://github.com/NAWFAL786" target="_blank" rel="noopener">See my GitHub</a>
+        <button class="btn" data-go="about">My journey</button>
+      </div>
+    </div>
+    <div class="term">
+      <div class="top"><i></i><i></i><i></i><span>nawfal@portfolio</span></div>
+      <div class="out" id="out" aria-live="polite"></div>
+      <div class="chips" id="chips"></div>
+      <form class="row" id="f">
+        <label for="in">&gt;&gt;&gt;</label>
+        <input id="in" autocomplete="off" spellcheck="false" placeholder="type: skills">
+      </form>
+    </div>
+  </div>
+  <div class="stats">
+    <div class="stat"><b>3</b><span>Core skills</span></div>
+    <div class="stat"><b>2026</b><span>Journey began</span></div>
+    <div class="stat"><b>2030</b><span>Graduating</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="page" id="about">
+  <h2 class="t">My journey</h2>
+  <p>A first-year engineering student who learns by building. Tap a card to see how I use each skill.</p>
+
+  <div class="journey">
+    <div class="step"><small>Before 2026</small><h3>Started coding</h3><p>Picked up Python and C basics.</p></div>
+    <div class="step"><small>2026</small><h3>Joined Atria</h3><p>Began B.E. in CSE.</p></div>
+    <div class="step next"><small>Now</small><h3>Building projects</h3><p>Looking for hackathons and teams.</p></div>
+    <div class="step"><small>2030</small><h3>Graduate</h3><p>Computer Science engineer.</p></div>
+  </div>
+
+  <h3 style="font-size:1.5rem">Skills</h3>
+  <div class="cards">
+    <div class="flip"><button class="in" style="display:block" aria-label="Flip Python card">
+      <div class="face"><div><h3>Python</h3><p>My main language</p></div><div><div class="meter"><i style="width:70%"></i></div><div class="hint" style="margin-top:8px">tap to flip</div></div></div>
+      <div class="face back"><div><h3>In practice</h3><p>Scripts, small tools and quick prototypes for ideas.</p></div></div>
+    </button></div>
+    <div class="flip"><button class="in" style="display:block" aria-label="Flip Vibe coding card">
+      <div class="face"><div><h3>Vibe coding</h3><p>AI-assisted building</p></div><div><div class="meter"><i style="width:80%"></i></div><div class="hint" style="margin-top:8px">tap to flip</div></div></div>
+      <div class="face back"><div><h3>In practice</h3><p>Describing an idea clearly, guiding AI, then testing and fixing the result.</p></div></div>
+    </button></div>
+    <div class="flip"><button class="in" style="display:block" aria-label="Flip C card">
+      <div class="face"><div><h3>C basics</h3><p>Understanding how code runs</p></div><div><div class="meter"><i style="width:45%"></i></div><div class="hint" style="margin-top:8px">tap to flip</div></div></div>
+      <div class="face back"><div><h3>In practice</h3><p>Learning logic, memory and the fundamentals behind every language.</p></div></div>
+    </button></div>
+  </div>
+
+  <div class="edu">
+    <div class="yr">2026 to 2030</div>
+    <div><h3>B.E. in Computer Science Engineering</h3><p>Atria Institute of Technology</p></div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="page" id="contact">
+  <h2 class="t">Say something</h2>
+  <p>Write a message here and it opens in your email app, ready to send. Or use any link on the left.</p>
+  <div class="cgrid">
+    <div class="cl">
+      <a href="mailto:mohammednawf2008@gmail.com"><div><small>Email</small><b>mohammednawf2008@gmail.com</b></div><span class="go">&rarr;</span></a>
+      <a href="tel:+917483449317"><div><small>Mobile</small><b>+91 74834 49317</b></div><span class="go">&rarr;</span></a>
+      <a href="https://www.linkedin.com/in/mohammed-nawfal-7b74a141b" target="_blank" rel="noopener"><div><small>LinkedIn</small><b>Mohammed Nawfal</b></div><span class="go">&rarr;</span></a>
+      <a href="https://github.com/NAWFAL786" target="_blank" rel="noopener"><div><small>GitHub</small><b>NAWFAL786</b></div><span class="go">&rarr;</span></a>
+    </div>
+    <form class="form" id="mail">
+      <div><label for="nm">Your name</label><input id="nm" required></div>
+      <div><label for="ms">Message</label><textarea id="ms" required></textarea></div>
+      <button class="btn main" type="submit">Send by email</button>
+    </form>
+  </div>
+</section>
+
+</main>
+<footer>&copy; 2026 Z Mohammed Nawfal</footer>
+</div>
+
+<script>
+// Navigation: plain buttons, no URL tricks, works in any viewer
+const ids=['home','about','contact'];
+function go(id){
+  ids.forEach(p=>document.getElementById(p).classList.toggle('show',p===id));
+  document.querySelectorAll('.tab').forEach(t=>t.classList.toggle('on',t.dataset.go===id));
+  window.scrollTo(0,0);
+}
+document.addEventListener('click',e=>{
+  const t=e.target.closest('[data-go]');
+  if(t)go(t.dataset.go);
+  const f=e.target.closest('.flip');
+  if(f)f.classList.toggle('f');
+});
+go('home');
+
+// Flip cards: the button is the .in element, rotate it via parent class
+// (handled in CSS through .flip.f .in)
+
+// Accent colour switcher
+document.querySelectorAll('.sw button').forEach(b=>b.addEventListener('click',e=>{
+  e.stopPropagation();
+  const [rgb,main,soft]=b.dataset.c.split('|'),r=document.documentElement.style;
+  r.setProperty('--rgb',rgb);r.setProperty('--orange',main);r.setProperty('--soft',soft);
+  document.querySelectorAll('.sw button').forEach(x=>x.classList.toggle('on',x===b));
+}));
+
+// Rotating word
+const words=['builds','codes','learns','ships'];let wi=0;
+const w=document.getElementById('word');
+setInterval(()=>{wi=(wi+1)%words.length;w.textContent=words[wi]},1800);
+
+// Terminal
+const data={
+  help:'Commands: about, skills, education, contact, github, linkedin, clear',
+  about:'Z Mohammed Nawfal, CSE student who builds with Python, C and vibe coding.',
+  skills:'Python | C (basic) | Vibe coding',
+  education:'B.E. Computer Science Engineering, Atria Institute of Technology, 2026-2030',
+  contact:'mohammednawf2008@gmail.com | +91 74834 49317',
+  github:'https://github.com/NAWFAL786',
+  linkedin:'https://www.linkedin.com/in/mohammed-nawfal-7b74a141b'
+};
+const out=document.getElementById('out'),inp=document.getElementById('in'),chips=document.getElementById('chips');
+function add(c,t){const d=document.createElement('div');d.className=c;d.textContent=t;out.appendChild(d);out.scrollTop=out.scrollHeight}
+function run(c){c=c.trim().toLowerCase();if(!c)return;add('cmd','>>> '+c);if(c==='clear'){out.innerHTML='';return}add('ok',data[c]||'Unknown command. Type help.')}
+add('ok','Tap a command or type one. Try: help');
+['help','about','skills','education','contact','github'].forEach(c=>{const b=document.createElement('button');b.type='button';b.textContent=c;b.onclick=()=>run(c);chips.appendChild(b)});
+document.getElementById('f').addEventListener('submit',e=>{e.preventDefault();run(inp.value);inp.value=''});
+
+// Email form
+document.getElementById('mail').addEventListener('submit',e=>{
+  e.preventDefault();
+  const n=document.getElementById('nm').value,m=document.getElementById('ms').value;
+  location.href='mailto:mohammednawf2008@gmail.com?subject='+encodeURIComponent('Message from '+n)+'&body='+encodeURIComponent(m+'\n\n- '+n);
+});
+
+// Cursor glow (pointer devices only)
+const glow=document.getElementById('glow');
+if(matchMedia('(pointer:fine)').matches){
+  addEventListener('mousemove',e=>{glow.style.opacity=1;glow.style.left=e.clientX+'px';glow.style.top=e.clientY+'px'});
+}
+
+// Network background
+const cv=document.getElementById('bg'),cx=cv.getContext('2d');
+let W,H,pts=[];
+function size(){W=cv.width=innerWidth;H=cv.height=innerHeight;pts=Array.from({length:Math.min(60,Math.floor(W/22))},()=>({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3}))}
+size();addEventListener('resize',size);
+function draw(){
+  cx.clearRect(0,0,W,H);
+  pts.forEach((p,i)=>{
+    p.x+=p.vx;p.y+=p.vy;
+    if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+    cx.fillStyle='rgba(185,166,255,.5)';cx.beginPath();cx.arc(p.x,p.y,1.6,0,6.3);cx.fill();
+    for(let j=i+1;j<pts.length;j++){
+      const q=pts[j],d=Math.hypot(p.x-q.x,p.y-q.y);
+      if(d<130){cx.strokeStyle='rgba(185,166,255,'+(.16*(1-d/130))+')';cx.beginPath();cx.moveTo(p.x,p.y);cx.lineTo(q.x,q.y);cx.stroke()}
+    }
+  });
+  if(!matchMedia('(prefers-reduced-motion:reduce)').matches)requestAnimationFrame(draw);
+}
+draw();
+</script>
+</body>
+</html>
